@@ -7,7 +7,7 @@
 
           <!-- Content Row -->
           <div class="row">
-          	<div class="col-lg-5">
+          	<div class="col-lg-4">
           		<div class="card shadow mb-4">
           			<div class="card-header py-3">
           				<h4 class="m-0 font-weight-bold text-primary">Thêm danh mục</h4>
@@ -26,7 +26,7 @@
           			</div>
           		</div>
           	</div>
-            <div class="col-lg-7">
+            <div class="col-lg-8">
             	<div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h4 class="m-0 font-weight-bold text-primary">Danh mục</h4>
@@ -72,4 +72,13 @@
             {{--  --}}
             </div>
           </div>
+@endsection
+
+@section('script')
+	
+            <script>
+			      $(document).ready(function() {
+			        $('#dataTable').DataTable();
+			      });
+  			</script>
 @endsection

@@ -10,11 +10,11 @@ class Brand extends Model
 
     public function category()
     {
-    	$this->belongsTo('App\Category', 'category_id');
+    	return $this->belongsTo('App\Category', 'category_id');
     }
 
     public function product()
     {
-    	$this->hasMany('App\Product', 'brand_id', 'id');
+    	return $this->hasMany('App\Product', 'brand_id', 'id');
     }
 }

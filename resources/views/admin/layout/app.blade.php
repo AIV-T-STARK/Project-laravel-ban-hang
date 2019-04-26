@@ -18,6 +18,8 @@
   <!-- Custom styles for this template-->
   <link href="{{ asset('asset/admin/css/sb-admin-2/sb-admin-2.min.css') }} " rel="stylesheet">
 
+  <link href="{{ asset('asset/admin/css/datatables/dataTables.bootstrap4.min.css') }} " rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -46,7 +48,7 @@
           <span>Danh Mục</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('admin.brand.index') }}">
           <i class="far fa-registered"></i>
           <span>Thương Hiệu</span></a>
       </li>
@@ -204,8 +206,8 @@
   <script src="{{ asset('asset/admin/js/sb-admin-2/sb-admin-2.min.js') }} "></script>
 
   <!-- Page level plugins -->
-  <script src="{{ asset('asset/admin/vendor/datatables/jquery.dataTables.min.js') }} "></script>
-  <script src="{{ asset('asset/admin/vendor/datatables/dataTables.bootstrap4.min.js') }} "></script>
+  <script src="{{ asset('asset/admin/js/datatables/jquery.dataTables.min.js') }} "></script>
+  <script src="{{ asset('asset/admin/js/datatables/dataTables.bootstrap4.min.js') }} "></script>
 
   @yield('script')
 
