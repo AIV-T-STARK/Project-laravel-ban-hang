@@ -26,4 +26,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::get('/', function() {
         return view('admin.admin');
     });
+    Route::get('logout', 'LoginController@logout')->name('admin.logout');
 });
