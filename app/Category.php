@@ -10,12 +10,12 @@ class Category extends Model
 
     public function brand()
     {
-    	$this->haMany('App\Brand', 'category_id', 'id');
+    	return $this->haMany('App\Brand', 'category_id', 'id');
     }
 
     public function product()
     {
-    	$this->hasManyThrough(
+    	return $this->hasManyThrough(
     		'App\Product',
     		'App\Brand',
     		'category_id',
