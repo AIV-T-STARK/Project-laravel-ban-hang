@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\Brand;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,9 +17,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::all()
+        $products = Product::all();
 
-        return view();
+        return view('admin.product.index', [
+            'products' => $products
+        ]);
     }
 
     /**
@@ -27,7 +31,10 @@ class ProductController extends Controller
      */
     public function getCreate()
     {
-        return view();
+        return view('admin.product.create', [
+            'categories' => Category::all(),
+            'brands' => Brand::all()
+        ]);
     }
 
     /**
@@ -43,7 +50,7 @@ class ProductController extends Controller
             'price' => 'required',
             'desc' => 'required',
             'avatar' => 'required|image',
-        ])
+        ]);
 
         //Uploat avatar
         $avatar = $request->avatar;
@@ -57,26 +64,16 @@ class ProductController extends Controller
 
         $product->name = $request->name;
         $product->slug = str_slug($request->name);
+        $product->avatar = 'uploads/products/' . $avatar_new_name;
         $product->price = $request->price;
-        if(asset($request->sale)){
-            $product->sale = $request->sale;
-        }
+        $product->sale = $request->sale;
         $product->desc = $request->desc;
+
+        $product->brand_id = $request->brand_id;
 
         $product->save();
 
-        return redirect();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show( $id)
-    {
-        //
+        return redirect('admin/product')->with('success', 'Bạn đã thêm 1 sản phẩm mới');
     }
 
     /**
@@ -89,7 +86,11 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        return redirect()->with('product', $product);
+        return view('admin.product.update', [
+            'categories' => Category::all(),
+            'brands' => Brand::all(),
+            'product' => $product
+        ]);
     }
 
     /**
@@ -101,7 +102,42 @@ class ProductController extends Controller
      */
     public function postUpdate(Request $request,  $id)
     {
-            }
+
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'desc' => 'required',
+            'avatar' => 'image',
+        ]);
+
+        $product = Product::find($id);
+        //Nếu người dùng thay đổi ảnh
+        if($request->hasFile('avatar')) {
+            $avatar = $request->avatar;
+
+            $avatar_new_name = time().$avatar->getClientOriginalName();
+
+            $avatar->move('uploads/products', $avatar_new_name);
+
+            unlink($product->avatar);
+            $product->avatar = 'uploads/products/' . $avatar_new_name;
+        }
+
+
+        $product->name = $request->name;
+        $product->slug = str_slug($request->name);
+
+        $product->price = $request->price;
+        $product->sale = $request->sale;
+        $product->desc = $request->desc;
+
+        $product->brand_id = $request->brand_id;
+
+        $product->save();
+
+        return redirect('admin/product')->with('success', 'Bạn đã sửa 1 sản phẩm');
+
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -109,8 +145,37 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function delete( $id)
     {
-        //
+        $product = Product::find($id);
+        unlink($product->avatar);
+        $product->delete();
+
+        return redirect()->back()->with('success', 'Đã xóa thành công');
+    }
+
+    public function chaneCategoryAnhBrand($category_id)
+    {
+        $ret = '';
+        $brands = Brand::where('category_id', $category_id)->get();
+        foreach ($brands as $br) {
+            $ret = $ret . "<option value=' $br->id '> $br->name </option>";
+        }
+        return $ret;
+    }
+
+    public function getActive($id)
+    {
+        $product = Product::find($id);
+
+        if ($product->active == 1) {
+            $product->active = 0;
+        } else {
+            $product->active = 1;
+        }
+
+        $product->save();
+
+        return redirect()->back();
     }
 }

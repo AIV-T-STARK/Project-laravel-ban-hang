@@ -10,6 +10,6 @@ class Product extends Model
 
     public function Brand()
     {
-    	$this->belongsTo('App\Brand', 'brand_id');
+    	return $this->belongsTo('App\Brand', 'brand_id');
     }
 }

@@ -53,7 +53,7 @@
           <span>Thương Hiệu</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('admin.product.index') }}">
           <i class="fas fa-box-open"></i>
           <span>Sản Phẩm</span></a>
       </li>
