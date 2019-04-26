@@ -27,4 +27,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
         return view('admin.admin');
     });
     Route::get('logout', 'LoginController@logout')->name('admin.logout');
+
+    Route::group(['prefix' => 'category'], function() {
+        Route::get('/', 'CategoryController@index')->name('admin.category.index');
+        Route::post('/create', 'CategoryController@postcreate')->name('admin.category.postCreate');
+
+        Route::get('/update/{id}', 'CategoryController@getUpdate')->name('admin.category.getUpdate');
+        Route::post('/update/{id}', 'CategoryController@postUpdate')->name('admin.category.postUpdate');
+
+        Route::get('/delete/{id}', 'CategoryController@delete')->name('admin.category.delete');
+    });
 });

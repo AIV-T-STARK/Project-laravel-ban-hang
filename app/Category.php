@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $table = 'categoties';
+    protected $table = 'categories';
 
     public function brand()
     {
-    	return $this->haMany('App\Brand', 'category_id', 'id');
+    	return $this->hasMany('App\Brand', 'category_id', 'id');
     }
 
     public function product()

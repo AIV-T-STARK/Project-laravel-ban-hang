@@ -41,7 +41,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('admin.category.index') }}">
           <i class="fas fa-list-ul"></i>
           <span>Danh Mục</span></a>
       </li>
