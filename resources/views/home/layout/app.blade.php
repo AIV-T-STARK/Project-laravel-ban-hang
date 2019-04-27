@@ -47,7 +47,11 @@
                   <input type="text" placeholder="Search">
                 </div>
               </li>
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i></button> </li>
+              <li class="nav-item">
+              	<a href="{{ route('getShowCart') }}">
+              		<i class="ti-shopping-cart"></i><span class="nav-shop__circle">{{Cart::count()}}</span>
+              	</a>
+              </li>
             </ul>
           </div>
         </div>

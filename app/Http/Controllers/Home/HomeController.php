@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Brand;
 use App\Category;
+use Cart;
 
 class HomeController extends Controller
 {
@@ -59,5 +60,34 @@ class HomeController extends Controller
     		'categories' => Category::all()
 
     	]);
+    }
+
+    public function getAddCart($id)
+    {
+        $product = Product::find($id);
+        Cart::add(['id' => $product->id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price, 'options' => ['avatar' => $product->avatar]]);
+        return redirect('showCart');
+    }
+
+    public function getShowCart()
+    {
+        $items = Cart::content();
+        $total = Cart::total();
+        return view('home.product.cart', [
+            'items' => $items,
+            'total' => $total
+        ]);
+    }
+
+    public function getRemoveCart($id)
+    {
+        Cart::remove($id);
+
+        return redirect('showCart');
+    }
+
+    public function getUpdateCart(Request $request)
+    {
+        Cart::update($request->rowId, $request->qty);
     }
 }

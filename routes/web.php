@@ -16,8 +16,21 @@ Route::group(['namespace' => 'home'], function() {
     Route::get('/{id}.html', 'HomeController@showSingle')->name('showSingle');
 
     Route::get('product', 'HomeController@getAllProduct')->name('getAllProduct');
+
     Route::get('category/{id}', 'HomeController@getCategory')->name('getCategory');
+
     Route::get('brand/{id}', 'HomeController@getBrand')->name('getBrand');
+
+    Route::get('cart/{id}', 'HomeController@getAddCart')->name('getAddCart');
+
+    Route::get('showCart', 'HomeController@getShowCart')->name('getShowCart');
+
+    Route::get('removeCart/{id}', 'HomeController@getRemoveCart')->name('getRemoveCart');
+
+    Route::get('updateCart', 'HomeController@getUpdateCart')->name('getUpdateCart');
+
+
+
 }); 
 
 

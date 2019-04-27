@@ -26,7 +26,7 @@
               <li><a href="#"><span>Hãng</span> : {{$product->brand->name}}</a></li>
             </ul>
             <div class="product_count mt-5">
-              <a class="button primary-btn" href="#">Mua ngay</a>               
+              <a class="btn btn-primary" href="{{ route('getAddCart', ['id' => $product->id]) }}">Mua ngay</a>               
             </div>
           </div>
         </div>
