@@ -54,7 +54,7 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function getUpdate($id)
@@ -71,7 +71,7 @@ class BrandController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function postUpdate(Request $request, $id)
@@ -97,7 +97,7 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function delete($id)

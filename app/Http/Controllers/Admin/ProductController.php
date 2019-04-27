@@ -79,7 +79,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function getUpdate($id)
@@ -97,7 +97,7 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function postUpdate(Request $request,  $id)
@@ -142,7 +142,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function delete( $id)
@@ -164,6 +164,11 @@ class ProductController extends Controller
         return $ret;
     }
 
+    /**
+     * Kiển tra active sản phẩm: nếu đã active -> bỏ active, nếu chưa active -> active
+     * @param  int $id 
+     * @return \Illuminate\Http\Response
+     */
     public function getActive($id)
     {
         $product = Product::find($id);

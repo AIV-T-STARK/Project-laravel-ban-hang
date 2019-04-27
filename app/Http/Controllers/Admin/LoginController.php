@@ -8,11 +8,20 @@ use Auth;
 
 class LoginController extends Controller
 {
+    /**
+     * Hiển thị view login
+     * @return \Illuminate\Http\Response
+     */
     public function getLogin()
     {
     	return view('admin.login.login');
     }
 
+    /**
+     * Thực hiện việc Login
+     * @param  Request $request [description]
+     * @return \Illuminate\Http\Response]
+     */
     public function postLogin(Request $request)
     {
     	$this->validate($request, [
@@ -30,6 +39,10 @@ class LoginController extends Controller
     	}
     }
 
+    /**
+     * thực hiện việc logout
+     * @return \Illuminate\Http\Response
+     */
     public function logout()
     {
     	Auth::logout();

@@ -70,8 +70,14 @@
                           <td>{{ $brand->name }}</td>
                           <td>{{ $brand->category->name }}</td>
                           <td>{{ $brand->product->count() }}</td>
-                          <th><a href="{{ route('admin.brand.getUpdate', ['id' => $brand->id]) }}">Sửa</a></th>
-                          <th><a href="{{ route('admin.brand.delete', ['id' => $brand->id]) }}">Xóa</a></th>
+                          <td>
+                              <a href="{{ route('admin.brand.getUpdate', ['id' => $brand->id]) }}">Sửa</a>
+                            </td>
+                          <td>
+                            @if ($brand->product->count() == 0)
+                            <a href="{{ route('admin.brand.delete', ['id' => $brand->id]) }}">Xóa</a>
+                          </td>
+                            @endif
                         </tr>
                       @endforeach
                     </tbody>

@@ -59,8 +59,13 @@
 			                        <td>{{$category->name}}</td>
 			                        <td>{{$category->brand->count()}}</td>
 			                        <td>{{$category->product->count()}}</td>
-			                        <td><a href="{{ route('admin.category.getUpdate', ['id'=> $category->id]) }}">Sửa</a></td>
-			                        <td><a href="{{ route('admin.category.delete', ['id'=> $category->id]) }}">Xóa</a></td>
+			                        <td>
+                                  <a href="{{ route('admin.category.getUpdate', ['id'=> $category->id]) }}">Sửa</a>
+                              </td>
+			                        <td>
+                                @if ($category->brand->count() == 0)
+                                <a href="{{ route('admin.category.delete', ['id'=> $category->id]) }}">Xóa</a></td>
+                                @endif
 			                    </tr>
                     		@endforeach
                     	@endif
