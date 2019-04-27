@@ -11,9 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::group(['namespace' => 'home'], function() {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/{id}.html', 'HomeController@showSingle')->name('showSingle');
+
+    Route::get('product', 'HomeController@getAllProduct')->name('getAllProduct');
+    Route::get('category/{id}', 'HomeController@getCategory')->name('getCategory');
+    Route::get('brand/{id}', 'HomeController@getBrand')->name('getBrand');
+}); 
+
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::group(['prefix' => 'login'], function() {
@@ -65,3 +71,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'Chec
         Route::get('/ajax/{id}', 'ProductController@chaneCategoryAnhBrand')->name('admin.product.ajax');
     });
 });
+
+
