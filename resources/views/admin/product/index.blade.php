@@ -64,9 +64,9 @@
                           <td><img src="{{ url($product->avatar) }}" alt="{{$product->name}}" style="max-width: 120px;"></td>
                           <td>{{$product->brand->name}}</td>
                           <td>{{$product->brand->category->name}}</td>
-                          <td>{{$product->price}}</td>
-                          <td>{{$product->sale}}</td>
-                          <td>{{$product->price * (1 - $product->sale)}}</td>
+                          <td>{{number_format($product->price, 0, ',', '.')}}</td>
+                          <td>{{$product->sale*100}} %</td>
+                          <td class="text-danger">{{number_format($product->price * (1 - $product->sale), 0, ',', '.')}}</td>
                           <td>
                             @if ($product->active == 1)
                               <a href="{{ route('admin.product.getActive', ['id' => $product->id]) }}"><span class="text-success font-weight-bold">Tốt</span></a>

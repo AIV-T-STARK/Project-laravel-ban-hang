@@ -49,11 +49,11 @@
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="price">Giá gốc</label>
-                      <input type="number" class="form-control" name="price" id="price">
+                      <input type="number" class="form-control" name="price" id="price" onchange="changePrice()">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="sale">Khuyến mại</label>
-                      <input type="number" value="0" class="form-control" name="sale" id="sale">
+                      <input type="number" value="0" max="100" class="form-control" name="sale" id="sale" onchange="changePrice()">
                     </div>
                   </div>
                   <div class="form-group">
@@ -78,6 +78,18 @@
 
 @section('script')
   <script>
+     function formatNumber(nStr, decSeperate, groupSeperate) {
+            nStr += '';
+            x = nStr.split(decSeperate);
+            x1 = x[0];
+            x2 = x.length > 1 ? ',' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + groupSeperate + '$2');
+            }
+            return x1 + x2;
+        }
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -89,6 +101,14 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+
+    function changePrice() {
+      var price = $('#price').val();
+      var sale = ($('#sale').val())/100;
+      var giaSauKhuyenMai = formatNumber((price * (1 - sale)).toFixed(0), '.', '.');
+      $('#giaSauKhuyenMai>span').text(giaSauKhuyenMai);
+    }
+
     $(document).ready(function () {
       $('#category_id').change(function() {
         var categoryId = $(this).val();

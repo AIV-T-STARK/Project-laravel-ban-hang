@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>aShark Shop - Home</title>
+  <title>@yield('title', 'AShark Shop')</title>
 	<!-- <link rel="icon" href="img/Fevicon.png" type="image/png"> -->
   <link rel="stylesheet" href="{{ asset('asset/home/vendors/bootstrap/bootstrap.min.css') }} ">
   <link rel="stylesheet" href="{{ asset('asset/home/vendors/fontawesome/css/all.min.css') }} ">
@@ -38,7 +38,7 @@
 
               <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Giới thiệu</a></li>
               
-              <li class="nav-item"><a class="nav-link" href="contact.html">Liên hệ</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
             </ul>
 
             <ul class="nav-shop">
@@ -145,7 +145,7 @@ Copyright &copy; <script>document.write(new Date().getFullYear());</script></a>
 
   <script src="{{ asset('asset/home/vendors/jquery/jquery-3.2.1.min.js') }} "></script>
   <script src="{{ asset('asset/home/vendors/bootstrap/bootstrap.bundle.min.js') }} "></script>
-  <script src="{{ asset('asset/home/vendors/skrollr.min.js') }} "></script>
+  {{-- <script src="{{ asset('asset/home/vendors/skrollr.min.js') }} "></script> --}}
   <script src="{{ asset('asset/home/vendors/owl-carousel/owl.carousel.min.js') }} "></script>
   <script src="{{ asset('asset/home/vendors/nice-select/jquery.nice-select.min.js') }} "></script>
   <!-- <script src="vendors/jquery.ajaxchimp.min.js"></script> -->

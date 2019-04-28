@@ -1,4 +1,9 @@
 @extends('home.layout.app')
+
+@section('title')
+  Sản phẩm
+@endsection
+
 @section('content')
       <!-- ================ category section start ================= -->      
   <section class="section-margin--small mb-5">
@@ -53,7 +58,7 @@
 	                  <div class="card-body">
 	                    <p>{{$product->brand->name}}</p>
 	                    <h4 class="card-product__title"><a href="{{ route('showSingle', ['id' => $product->id]) }}">{{$product->name}}</a></h4>
-	                    <p class="card-product__price">{{$product->price}}</p>
+	                    <p class="card-product__price">{{ number_format($product->price, 0, ',', '.') }}</p>
 	                  </div>
 	                </div>
 	              </div>

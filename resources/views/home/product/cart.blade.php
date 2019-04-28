@@ -1,4 +1,9 @@
 @extends('home.layout.app')
+
+@section('title')
+    Giỏ hàng
+@endsection
+
 @section('content')
 <section class="py-5">
     <div class="container">
@@ -9,10 +14,10 @@
         </div>
         @foreach ($items as $item)
         	<div class="row mt-4">
-	            <div class="col-md-4">
+	            <div class="col-4">
 	                <img src="{{ url($item->options->avatar) }}" alt="" class="img-fluid">
 	            </div>
-	            <div class="col-md-8 mt-3 mt-md-0">
+	            <div class="col-8 mt-3 mt-md-0">
 	                <h5>{{ $item->name }}</h5>
 	                <h6 class="d-inline pr-4">Đơn Giá: {{ number_format($item->price, 0, ',', '.') }} VNĐ</h6>
 	                <div class="product_count mt-3">

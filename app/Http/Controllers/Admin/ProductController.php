@@ -66,7 +66,7 @@ class ProductController extends Controller
         $product->slug = str_slug($request->name);
         $product->avatar = 'uploads/products/' . $avatar_new_name;
         $product->price = $request->price;
-        $product->sale = $request->sale;
+        $product->sale = ($request->sale)/100;
         $product->desc = $request->desc;
 
         $product->brand_id = $request->brand_id;
@@ -74,6 +74,7 @@ class ProductController extends Controller
         $product->save();
 
         return redirect('admin/product')->with('success', 'Bạn đã thêm 1 sản phẩm mới');
+        
     }
 
     /**

@@ -1,4 +1,9 @@
 @extends('home.layout.app')
+
+@section('title')
+    AShark Shop
+@endsection
+
 @section('content')
 <!--================ Hero banner start =================-->
 <section class="hero-banner">
@@ -29,7 +34,7 @@
         </div>
         <div class="row">
             @foreach ($products as $product)
-            <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="col-sm-6 col-lg-4 col-xl-3">
                 <div class="card text-center card-product">
                     <div class="card-product__img">
                         <a href="{{ route('showSingle', ['id' => $product->id]) }}">
@@ -38,7 +43,10 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-product__title"><a href="{{ route('showSingle', ['id' => $product->id]) }}">{{$product->name}}</a></h4>
-                        <p class="card-product__price">{{$product->price}} VNĐ</p>
+                        @if ($product->sale > 0)
+                            <p class="card-product__price die">{{ number_format($product->price, 0, ',', '.') }} VNĐ</p>
+                        @endif
+                        <p class="card-product__price text-danger">{{ number_format($product->price * (1 - $product->sale), 0, ',', '.') }} VNĐ</p>
                     </div>
                 </div>
             </div>

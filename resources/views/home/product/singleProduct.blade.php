@@ -1,4 +1,9 @@
 @extends('home.layout.app')
+
+@section('title')
+  {{ $product->name }}
+@endsection
+
 @section('content')
 	  <!--================Single Product Area =================-->
   <div class="product_image_area">
@@ -20,7 +25,7 @@
         <div class="col-lg-6 offset-lg-1">
           <div class="s_product_text">
             <h3>{{$product->name}}</h3>
-            <h2>{{$product->price}} VNĐ</h2>
+            <h2 class="text-danger">{{ number_format($product->price * (1 - $product->sale), 0, ',', '.') }} VNĐ</h2>
             <ul class="list">
               <li><a class="active" href="#"><span>Loại</span> : {{$product->brand->category->name}}</a></li>
               <li><a href="#"><span>Hãng</span> : {{$product->brand->name}}</a></li>
