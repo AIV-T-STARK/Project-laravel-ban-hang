@@ -58,7 +58,10 @@
 	                  <div class="card-body">
 	                    <p>{{$product->brand->name}}</p>
 	                    <h4 class="card-product__title"><a href="{{ route('showSingle', ['id' => $product->id]) }}">{{$product->name}}</a></h4>
-	                    <p class="card-product__price">{{ number_format($product->price, 0, ',', '.') }}</p>
+                      @if ($product->sale > 0)
+                            <p class="card-product__price die">{{ number_format($product->price, 0, ',', '.') }} VNĐ</p>
+                        @endif
+                        <p class="card-product__price text-danger">{{ number_format($product->price * (1 - $product->sale), 0, ',', '.') }} VNĐ</p>
 	                  </div>
 	                </div>
 	              </div>
